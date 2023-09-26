@@ -28,15 +28,6 @@ function animateIntro() {
         .drawsvg("animate");
 }
 
-function animateIntro() {
-    $items
-        .removeClass("active")
-        .eq(currItem++ % itemsLen)
-        .addClass("active")
-        .find("svg")
-        .drawsvg("animate");
-}
-
 animateIntro();
 
 tl.to(".to-animate", {
