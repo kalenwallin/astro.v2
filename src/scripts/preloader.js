@@ -3,7 +3,7 @@ const tl = gsap.timeline({ defaults: { ease: "power1.out" } });
 
 tl.to(".hide", {
     x: "0%",
-    duration: 0, // 0.3
+    duration: 0.3,
     opacity: 1,
 });
 
