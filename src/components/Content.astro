@@ -1,0 +1,56 @@
+---
+import { type Row, type Post } from '../types.ts';
+let rows = Astro.props;
+---
+{rows.map((row: Row ) => (
+  <div class="netflix-slider row-container" id={`row-${row.order}-container`}>
+    <div class="row-icon-title-container" id={`row-icon-title-${row.order}-container`}>
+      <img src={row.icon} class="row-icon animate to-spin" id={`row-icon-${row.order}`} />
+      <p class="row-title animate to-slide-left" id={`row-title-${row.order}`}>{row.name}</p>
+    </div>
+    <div class="swiper" id={`row-carousel-${row.order}-container`}>
+      <div class="swiper-wrapper">
+        {row.posts.map((item: Post ) => (
+          <div class="swiper-slide">
+            <a href={`pages/${item.slug}/${item.title}`}>
+              <img src={item.img} />
+            </a>
+          </div>
+        ))}
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </div>
+))}
+
+<script is:inline src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+<script is:inline>
+  var swiper = new Swiper('.swiper', {
+    slidesPerView: 1,
+    spaceBetween: 10,
+    slidesPerGroup: 1,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    breakpoints: {
+      100: {
+        slidesPerView: 2,
+        spaceBetween: 10,
+      },
+      640: {
+        slidesPerView: 3,
+        spaceBetween: 10,
+      },
+      768: {
+        slidesPerView: 4,
+        spaceBetween: 10,
+      },
+      1024: {
+        slidesPerView: 5,
+        spaceBetween: 10,
+      },
+    }
+  });
+</script>
