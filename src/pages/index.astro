@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-//import Preloader from '../components/Preloader.astro'; We might not need a preloader if Astro is fast enough
+import Preloader from '../components/Preloader.astro'; //We might not need a preloader if Astro is fast enough
 import Navbar from '../components/Navbar.astro';
 import Header from '../components/Header.astro';
 import Content from '../components/Content.astro';
@@ -62,10 +62,9 @@ let row_mobile: Row = { name: "Mobile Apps", icon: config.V2_NAVBAR_MOBILE, orde
 
 // Aggregate posts categories into rows
 const rows: Row[] = [row_career, row_websites, row_games, row_mobile];
-console.log(`In index.astro: ${rows}`);
 ---
 <Layout title={title}>
-    <!--<Preloader /> We might not need a preloader if Astro is fast enough-->
+    <Preloader />
     <Navbar rows={rows}/>
     <Header />
     <Content rows={rows}/>

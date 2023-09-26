@@ -1,13 +1,12 @@
 ---
 import { type Row, type Post } from '../types.ts';
 let { rows } = Astro.props;
-console.log(`In Content.astro: ${rows}`);
 ---
 {rows.map((row: Row ) => (
   <div class="netflix-slider row-container" id={`row-${row.order}-container`}>
     <div class="row-icon-title-container" id={`row-icon-title-${row.order}-container`}>
       <img src={row.icon} class="row-icon animate to-spin" id={`row-icon-${row.order}`} />
-      <p class="row-title animate to-slide-left" id={`row-title-${row.order}`}> {row.name}</p>
+      <p class="row-title animate to-slide-left" id={`row-title-${row.order}`}>&MediumSpace;{row.name}</p>
     </div>
     <div class="swiper" id={`row-carousel-${row.order}-container`}>
       <div class="swiper-wrapper">

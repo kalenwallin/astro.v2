@@ -49,7 +49,7 @@ imagesLoaded("body", { background: true }, function () {
         duration: 0.6,
         onComplete: () => {
             // headings and buttons
-            elements = document.querySelectorAll(".to-animate");
+            let elements = document.querySelectorAll(".to-animate");
             elements.forEach((e) => {
                 e.classList.remove("to-animate");
                 e.classList.add("slide-in-from-top-header");
