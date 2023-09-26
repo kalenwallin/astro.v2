@@ -12,7 +12,7 @@ let { rows } = Astro.props;
       <div class="swiper-wrapper">
         {row.posts.map((item: Post ) => (
           <div class="swiper-slide">
-            <a href={`pages/${item.slug}/${item.title}`}>
+            <a href={`/${item.slug}`}>
               <img src={item.img} />
             </a>
           </div>

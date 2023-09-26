@@ -3,12 +3,12 @@ import Layout from '../layouts/Layout.astro';
 import PageNavbar from '../components/PageNavbar.astro';
 import config from '../config';
 
-const { v3slug, title } = Astro.params;
-let safe_title = title || "Portfolio | Kalen Wallin";
+const { slug } = Astro.params;
+let safe_title = slug || "Portfolio | Kalen Wallin";
 ---
 <Layout title={safe_title}>
     <PageNavbar />
     <div class="content">
-        <iframe src={ `${config.V3_BASE_URL}${v3slug}` } style="height: 85vh; border: none;" />
+        <iframe src={ `${config.V3_BASE_URL}${slug}` } style="height: 85vh; border: none;" />
     </div>
 </Layout>
