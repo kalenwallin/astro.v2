@@ -8,7 +8,9 @@ let safe_title = slug || "Portfolio | Kalen Wallin";
 ---
 <Layout title={safe_title}>
     <PageNavbar />
-    <div class="content">
-        <iframe src={ `${config.V3_BASE_URL}${slug}` } style="height: 85vh; border: none;" />
+    <div class="page">
+        <div class="content">
+            <iframe src={ `${config.V3_BASE_URL}${slug}` } style="height: 85vh; border: none;" />
+        </div>
     </div>
 </Layout>
