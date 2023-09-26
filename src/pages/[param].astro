@@ -1,13 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PageNavbar from '../components/PageNavbar.astro';
-let v3_url = import.meta.env.PUBLIC_V3_URL;
+import config from '../config';
+
 const { v3slug, title } = Astro.params;
 let safe_title = title || "Portfolio | Kalen Wallin";
 ---
 <Layout title={safe_title}>
     <PageNavbar />
     <div class="content">
-        <iframe src={ `${v3_url}${v3slug}` } style="height: 85vh; border: none;" />
+        <iframe src={ `${config.V3_BASE_URL}${v3slug}` } style="height: 85vh; border: none;" />
     </div>
 </Layout>

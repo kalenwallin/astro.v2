@@ -1,10 +1,7 @@
 ---
-interface Row {
-  order: string;
-  icon: string;
-}
-let rows = Astro.props;
 import $ from 'jquery';
+import type { Row } from '../types';
+let { rows } = Astro.props;
 ---
 <div class="navbar-container">
     {rows.map((row: Row) => (

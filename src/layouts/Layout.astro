@@ -1,12 +1,13 @@
 ---
 import '../css/themes.css';
 import '../css/app.css';
+import config from '../config';
 
 import { type Props } from '../types';
 
 const { title } = Astro.props;
 
-const v2_icon = import.meta.env.PUBLIC_V2_ICON;
+const v2_icon = config.V2_ICON;
 ---
 
 <!doctype html>
@@ -21,12 +22,12 @@ const v2_icon = import.meta.env.PUBLIC_V2_ICON;
         <link rel="icon" type="image/png" href=`${v2_icon}.png` />
 
         <!-- Open Graph Social Data -->
-        <meta property="og:image" content={import.meta.env.PUBLIC_OG_IMAGE} />
-        <meta property="og:description" content={import.meta.env.PUBLIC_OG_DESCCRIPTION} />
-        <meta property="og:title" content={import.meta.env.PUBLIC_OG_TITLE} />
-        <meta property="og:url" content={import.meta.env.PUBLIC_OG_URL} />
-		<meta property="og:author" content={import.meta.env.PUBLIC_OG_AUTHOR} />
-        <meta property="og:type" content={import.meta.env.PUBLIC_OG_TYPE} />
+        <meta property="og:image" content={config.OG_IMAGE} />
+        <meta property="og:description" content={config.OG_DESC} />
+        <meta property="og:title" content={config.OG_TITLE} />
+        <meta property="og:url" content={config.OG_URL} />
+		<meta property="og:author" content={config.OG_AUTHOR} />
+        <meta property="og:type" content={config.OG_TYPE} />
 
 		<link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
 		<title>{title}</title>

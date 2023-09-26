@@ -1,10 +1,10 @@
 ---
-let backblaze_url = import.meta.env.PUBLIC_BACKBLAZE_URL;
+import config from '../config';
 ---
 <div class="page-nav navbar-container">
     <div class="page-navbar-icon-container">
         <a href="/">
-            <img class="page-navbar-icon" src={`${backblaze_url}/media/kw.png`} />
+            <img class="page-navbar-icon" src={`${config.BACKBLAZE_BASE_URL}/media/kw.png`} />
         </a>
     </div>
 </div>

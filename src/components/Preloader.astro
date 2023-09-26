@@ -1,5 +1,5 @@
 ---
-const v2_logo = import.meta.env.PUBLIC_V2_LOGO;
+import config from "../config";
 ---
 <div class="preloader">
     <div class="item">
@@ -17,7 +17,7 @@ const v2_logo = import.meta.env.PUBLIC_V2_LOGO;
         </svg>
     </div>
     <div class="logo text hide">
-        <img src={v2_logo} width="100"/>
+        <img src={config.V2_LOGO} width="100"/>
     </div>
     <div class="txt hide">
         <div class="progress"><span></span></div>

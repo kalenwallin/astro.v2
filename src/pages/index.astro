@@ -5,39 +5,64 @@ import Navbar from '../components/Navbar.astro';
 import Header from '../components/Header.astro';
 import Content from '../components/Content.astro';
 import type { Post, Row } from '../types';
+import config from '../config';
 const { title } = Astro.props;
 
 import { Client } from '@notionhq/client';
-const notion = new Client({ auth: import.meta.env.NOTION_API_KEY });
-let posts_career: any = [];
+const notion = new Client({ auth: config.NOTION_API_SECRET });
 
-// Fetch career posts from notion db
-const { results } = await notion.databases.query({
-    database_id: import.meta.env.NOTION_DATABASE_ID,
-    filter: {
-            property: 'api-v1-category',
+// Fetch posts from notion db
+async function fetchPosts(category: string) {
+    let posts: Post[] = [];
+    const { results } = await notion.databases.query({
+        database_id: config.NOTION_DATABASE_ID,
+        filter: {
+            property: 'api_v1_category',
             rich_text: {
-                contains: "Career",
+                contains: category,
             }
         },
-    sorts: [{
-        property: 'Published',
-        direction: 'descending'
-    }]
-});
-await results.map((result: any) => {
-    const resultProps: any = result.properties;
-    posts_career = [...posts_career, {
-        slug: resultProps.api_v3_link.url,
-        img: resultProps.api_v1_cover.url,
-        title: resultProps.api_v1_company.rich_text[0].text.content + " - " + resultProps.api_v1_role.rich_text[0].text.content,
-    }] 
-});
-console.log(results);
+        sorts: [{
+            property: 'Published',
+            direction: 'descending'
+        }]
+    });
+
+    results.forEach((result: any) => {
+        const resultProps: any = result.properties;
+        if(resultProps.api_v3_link && resultProps.api_v1_cover && resultProps.api_v1_company && resultProps.api_v1_role) {
+            posts.push({
+                slug: resultProps.api_v3_link.url,
+                img: resultProps.api_v1_cover.url,
+                title: resultProps.api_v1_company.rich_text[0].text.content + " - " + resultProps.api_v1_role.rich_text[0].text.content,
+            });
+        } else {
+            console.log("One or more required properties are missing in:", resultProps);
+        }
+    });
+
+    return posts;
+}
+
+// Create Career Row
+let posts_career: Post[] = await fetchPosts("Career");
+let row_career: Row = { name: "Career", icon: config.V2_NAVBAR_CAREER, order: "1", posts: posts_career };
+
+// Create Websites Row
+let posts_websites: Post[] = await fetchPosts("Websites");
+let row_websites: Row = { name: "Websites", icon: config.V2_NAVBAR_WEBSITES, order: "2", posts: posts_websites };
+
+// Create Games Row
+let posts_games: Post[] = await fetchPosts("Games");
+let row_games: Row = { name: "Video Games", icon: config.V2_NAVBAR_GAMES, order: "3", posts: posts_games };
+
+// Create Mobile Row
+let posts_mobile: Post[] = await fetchPosts("Mobile Apps");
+let row_mobile: Row = { name: "Mobile Apps", icon: config.V2_NAVBAR_MOBILE, order: "4", posts: posts_mobile };
 
 // Aggregate posts categories into rows
-const rows: Row[] = [posts_career];
-
+const rows: Row[] = [row_career, row_websites, row_games, row_mobile];
+console.log(`In index.astro: ${rows}`);
 ---
 <Layout title={title}>
     <!--<Preloader /> We might not need a preloader if Astro is fast enough-->
