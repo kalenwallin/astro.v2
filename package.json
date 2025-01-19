@@ -1,7 +1,7 @@
 {
   "name": "astro-v2",
   "type": "module",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -10,11 +10,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/vercel": "^5.0.1",
-    "@notionhq/client": "^2.2.13",
-    "astro": "^3.6.4"
+    "@astrojs/vercel": "^8.0.2",
+    "@notionhq/client": "^2.2.15",
+    "astro": "^5.1.7"
   },
   "devDependencies": {
-    "@types/jquery": "^3.5.19"
+    "@types/jquery": "^3.5.32"
   }
 }
